@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ${{ values.app_name }}
+  name: ${{ values.app_name }}-svc
+  namespace: lab
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: ${{ values.app_name }}
+  type: ClusterIP

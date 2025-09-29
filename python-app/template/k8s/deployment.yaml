@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${{ values.app_name }}
+  namespace: lab
+  labels:
+    app: ${{ values.app_name }}
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: ${{ values.app_name }}
+  template:
+    metadata:
+      labels:
+        app: ${{ values.app_name }}
+    spec:
+      containers:
+      - name: ${{ values.app_name }}
+        image: iagouvea/${{ values.app_name }}:1.0
+        ports:
+        - containerPort: 5000
