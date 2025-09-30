@@ -8,12 +8,12 @@ app = Flask(__name__)
 def info():
     return jsonify(
         {
-            'app': 'python-app',
+            'app': '${{ values.app_name }}',
             'version': '1.0.0',
             'owner': 'igor',
             'date': datetime.datetime.now().strftime('%d-%m-%Y'),
             'hostname': socket.gethostname(),
-            'deployed_on': 'kubernetes'
+            'deployed_on': 'kubernetes',
         }
     )
 
