@@ -45,6 +45,7 @@ spec:
         description: This is ${{ parameters.component_id }}
         repoUrl: github.com?owner=igor-gouvea&repo=${{ parameters.component_id }}
         defaultBranch: 'main'
+        visibility: public
 
     - id: register
       name: Register
