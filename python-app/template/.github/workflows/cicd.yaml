@@ -28,9 +28,7 @@ jobs:
 
       - name: Set short git commit SHA
         id: vars
-        run: |
-          calculatedSha=$(git rev-parse --short ${{ '${{ github.sha }}' }})
-          echo "COMMIT_ID=$calculatedSha" >> $GITHUB_ENV
+        run: echo "commit_id=$(git rev-parse --short $GITHUB_SHA)" >> $GITHUB_OUTPUT
 
       - name: Build and Push
         uses: docker/build-push-action@v6
@@ -40,7 +38,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: iagouvea/${{ values.app_name }}:${{ '${{ env.COMMIT_ID }}' }}
     outputs:
-      commit_id: ${{ '${{ env.COMMIT_ID }}' }}
+      commit_id: ${{ steps.vars.outputs.commit_id }}
 
   cd:
     needs: ci
