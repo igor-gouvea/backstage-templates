@@ -53,8 +53,7 @@ jobs:
         shell: bash
         run: |
           pip install yq
-          COMMIT_ID=${{ '{{' }} needs.ci.outputs.commit_id }}
-          yq -Yi ".image.tag = \"$COMMIT_ID\"" helm/python-app/values.yaml
+          yq -Yi ".image.tag = \"${{ '${{ needs.ci.outputs.commit_id }}' }}\"" helm/python-app/values.yaml
   
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
@@ -95,4 +94,3 @@ jobs:
         run: |
           argocd app sync ${{ values.app_name }}
           argocd app wait ${{ values.app_name }} --timeout 180
-
