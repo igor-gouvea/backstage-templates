@@ -66,12 +66,32 @@ jobs:
           sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
           rm argocd-linux-amd64
 
-      - name: Argocd app Sync
+      - name: Argocd Login
         run: |
           argocd login argocd-server.argo.svc.cluster.local \
             --insecure \
             --grpc-web \
             --username admin \
             --password ${{ '${{ secrets.ARGOCD_PASSWORD }}' }}
+
+      - name: Ensure Argocd app exists
+        run: |
+          repository="https://github.com/igor-gouvea/${{ values.app_name }}.git"
+          argocd repo list | grep -q $repository || argocd repo add $repository
+
+          argocd app get ${{ values.app_name }} ||        \
+          argocd app create ${{ values.app_name }}        \
+            --repo $repository                            \
+            --path helm/python-app                        \
+            --dest-namespace ${{ values.app_env }}        \
+            --dest-server https://kubernetes.default.svc  \
+            --values values.yaml                          \
+            --revision main                               \
+            --sync-policy manual                          \
+            --sync-option CreateNamespace=true
+
+      - name: Argocd app Sync
+        run: |
           argocd app sync ${{ values.app_name }}
+          argocd app wait ${{ values.app_name }} --timeout 180
 
