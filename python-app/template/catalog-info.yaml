@@ -6,6 +6,13 @@ metadata:
   annotations:
    github.com/project-slug: igor-gouvea/${{ values.app_name }}
    backstage.io/techdocs-ref: dir:.
+  tags:
+    - python
+    - api
+links:
+  - url: http://${{ values.app_name }}.${{ values.app_env }}.local
+    title: Development API
+    icon: dashboard
 spec:
   type: service
   owner: development
