@@ -9,10 +9,10 @@ metadata:
   tags:
     - python
     - api
-links:
-  - url: http://${{ values.app_name }}.${{ values.app_env }}.local
-    title: Development API
-    icon: dashboard
+  links:
+    - url: http://${{ values.app_name }}.${{ values.app_env }}.local
+      title: Development API
+      icon: dashboard
 spec:
   type: service
   owner: development
