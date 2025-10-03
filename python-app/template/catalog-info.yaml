@@ -4,7 +4,7 @@ metadata:
   name: ${{ values.app_name }}
   description: Python app that display some informations about your API.
   annotations:
-   github.com/project-slug: iagouvea/${{ values.app_name }}
+   github.com/project-slug: igor-gouvea/${{ values.app_name }}
    backstage.io/techdocs-ref: dir:.
 spec:
   type: service
