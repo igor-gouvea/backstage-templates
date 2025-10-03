@@ -4,7 +4,7 @@ import socket
 
 app = Flask(__name__)
 
-@app.route('/api/v1/info')
+@app.route('/')
 def info():
     return jsonify(
         {
@@ -17,7 +17,7 @@ def info():
         }
     )
 
-@app.route('/api/v1/health')
+@app.route('/health')
 def health():
     return jsonify({'status': 'healthy'})
 
