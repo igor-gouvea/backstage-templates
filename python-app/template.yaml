@@ -13,7 +13,7 @@ spec:
       required:
         - component_id
         - environment
-        - system
+        - project
       properties:
         component_id:
           title: Component Name
