@@ -13,6 +13,7 @@ spec:
       required:
         - component_id
         - environment
+        - system
       properties:
         component_id:
           title: Component Name
@@ -27,6 +28,14 @@ spec:
             - dev
             - qa
             - staging
+        project:
+          title: System
+          type: string
+          description: The project where this component will be
+          enum:
+            - projeto-1
+            - projeto-2
+            - projeto-3
 
   steps:
     - id: fetchBase
@@ -37,6 +46,7 @@ spec:
         values:
           app_name: ${{ parameters.component_id }}
           app_env: ${{ parameters.environment }}
+          app_proj: ${{ parameters.project }}
 
     - id: publish
       name: Publish
