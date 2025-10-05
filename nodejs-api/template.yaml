@@ -13,6 +13,7 @@ spec:
       required:
         - component_id
         - project
+        - owner
       properties:
         component_id:
           title: Component Name
@@ -31,8 +32,8 @@ spec:
           title: Owner
           type: string
           description: Team or group that owns this component
-          ui:field: OwnerPicker
-          ui:options:
+          "ui:field": OwnerPicker
+          "ui:options":
             catalogFilter:
               kind: Group
 
