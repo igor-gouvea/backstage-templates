@@ -8,4 +8,4 @@ Here you could expand on what each of these endpoints do.
 
 # How to access the app?
 
-You can access the app by accessing this URL: `${{ values.app_name }}.local/`
+You can access the app by accessing this URL: `${{ values.app_name }}.dev.local/`

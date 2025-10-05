@@ -83,7 +83,7 @@ jobs:
           argocd app create ${{ values.app_name }}        \
             --repo $repository                            \
             --path helm/python-api                        \
-            --dest-namespace ${{ values.app_env }}        \
+            --dest-namespace development                  \
             --dest-server https://kubernetes.default.svc  \
             --values values.yaml                          \
             --revision main                               \
