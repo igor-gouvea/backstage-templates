@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.app_name }}
+  description: Python app that display some informations about your API.
+  annotations:
+   github.com/project-slug: igor-gouvea/${{ values.app_name }}
+   backstage.io/techdocs-ref: dir:.
+  tags:
+    - python
+    - api
+  links:
+    - url: http://${{ values.app_name }}.dev.local
+      title: Development API
+      icon: dashboard
+spec:
+  type: service
+  owner: ${{ values.app_owner }}
+  lifecycle: production
+  system: ${{ values.app_proj }}
