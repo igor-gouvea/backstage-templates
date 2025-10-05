@@ -4,8 +4,8 @@ metadata:
   name: ${{ values.app_name }}
   description: NodeJS app that display some informations about your API.
   annotations:
-   github.com/project-slug: igor-gouvea/${{ values.app_name }}
-   backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: igor-gouvea/${{ values.app_name }}
+    backstage.io/techdocs-ref: dir:.
   tags:
     - nodejs
     - api
