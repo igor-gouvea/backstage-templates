@@ -24,7 +24,7 @@ ingress:
   className: "nginx"
   annotations: {}
   hosts:
-    - host: ${{ values.app_name }}.${{ values.app_env }}.local
+    - host: ${{ values.app_name }}.dev.local
       paths:
         - path: /
           pathType: Prefix
