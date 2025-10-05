@@ -18,7 +18,7 @@ spec:
         component_id:
           title: Component Name
           type: string
-          description: Provide a componentt name
+          description: Provide a component name
           pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
         project:
           title: System
@@ -32,8 +32,8 @@ spec:
           title: Owner
           type: string
           description: Team or group that owns this component
-          "ui:field": OwnerPicker
-          "ui:options":
+          ui:field: OwnerPicker
+          ui:options:
             catalogFilter:
               kind: Group
 
