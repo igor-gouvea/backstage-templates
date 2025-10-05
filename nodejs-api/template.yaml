@@ -13,7 +13,6 @@ spec:
       required:
         - component_id
         - project
-        - owner
       properties:
         component_id:
           title: Component Name
