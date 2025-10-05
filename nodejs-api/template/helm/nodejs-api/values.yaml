@@ -1,63 +1,17 @@
-replicaCount: 1
-image:
+deployment:
+  name: ${{ values.app_name }}
+  replicas: 1
   repository: iagouvea/${{ values.app_name }}
-  pullPolicy: IfNotPresent
   tag: "9e6acc9"
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-serviceAccount:
-  create: false
-  automount: true
-  annotations: {}
-  name: ""
-podAnnotations: {}
-podLabels: {}
-podSecurityContext: {}
-securityContext: {}
+
+
 service:
+  name: ${{ values.app_name }}-svc
   type: ClusterIP
   port: 8080
-  targetPort: 5000
+  host: ${{ values.app_name }}.dev.local
+
 ingress:
   enabled: true
+  name: ${{ values.app_name }}-ingress
   className: "nginx"
-  annotations: {}
-  hosts:
-    - host: ${{ values.app_name }}.dev.local
-      paths:
-        - path: /
-          pathType: Prefix
-  tls: []
-httpRoute:
-  enabled: false
-  annotations: {}
-  parentRefs:
-    - name: gateway
-      sectionName: http
-  hostnames:
-    - chart-example.local
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /headers
-resources: {}
-livenessProbe:
-  httpGet:
-    path: /api/v1/health
-    port: http
-readinessProbe:
-  httpGet:
-    path: /api/v1/health
-    port: http
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-volumes: []
-volumeMounts: []
-nodeSelector: {}
-tolerations: []
-affinity: {}
