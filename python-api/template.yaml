@@ -1,9 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: nodejs-api
-  title: NodeJS API Template
-  description: Provisions a minimalistic NodeJS API
+  name: python-api
+  title: Python API Template
+  description: Provisions a minimalistic Python API
 spec:
   owner: development
   type: service
