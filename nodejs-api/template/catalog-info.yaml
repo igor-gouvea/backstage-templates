@@ -15,6 +15,6 @@ metadata:
       icon: dashboard
 spec:
   type: service
-  owner: development
+  owner: ${{ values.app_owner }}
   lifecycle: production
   system: ${{ values.app_proj }}

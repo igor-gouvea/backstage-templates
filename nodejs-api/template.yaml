@@ -12,7 +12,7 @@ spec:
       required:
         - component_id
         - project
-      #  - owner
+        - owner
       properties:
         component_id:
           title: Component Name
@@ -27,14 +27,14 @@ spec:
             - projeto-1
             - projeto-2
             - projeto-3
-        #owner:
-        #  title: Owner
-        #  type: string
-        #  description: Team or group that owns this component
-        #  ui:field: OwnerPicker
-        #  ui:options:
-        #    catalogFilter:
-        #      kind: Group
+        owner:
+          title: Owner
+          type: string
+          description: Team or group that owns this component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
   steps:
     - id: fetchBase
       name: Fetch Base
@@ -44,7 +44,7 @@ spec:
         values:
           app_name: ${{ parameters.component_id }}
           app_proj: ${{ parameters.project }}
-#          app_owner: ${{ parameters.owner }}
+          app_owner: ${{ parameters.owner }}
     - id: publish
       name: Publish
       action: publish:github
