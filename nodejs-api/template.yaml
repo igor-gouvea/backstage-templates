@@ -44,7 +44,7 @@ spec:
         values:
           app_name: ${{ parameters.component_id }}
           app_proj: ${{ parameters.project }}
-          app_owner: ${{ parameters.owner }}
+#          app_owner: ${{ parameters.owner }}
     - id: publish
       name: Publish
       action: publish:github
