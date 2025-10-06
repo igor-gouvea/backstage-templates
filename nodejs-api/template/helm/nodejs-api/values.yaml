@@ -9,9 +9,9 @@ service:
   name: ${{ values.app_name }}-svc
   type: ClusterIP
   port: 8080
-  host: ${{ values.app_name }}.dev.local
 
 ingress:
   enabled: true
   name: ${{ values.app_name }}-ingress
   className: "nginx"
+  host: ${{ values.app_name }}.dev.local
