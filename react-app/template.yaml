@@ -1,0 +1,66 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: react-app
+  title: React App Template
+  description: Provisions a starter React App
+spec:
+  owner: development
+  type: service
+  parameters:
+    - title: Fill in some steps
+      required:
+        - component_id
+        - project
+        - owner
+      properties:
+        component_id:
+          title: Component Name
+          type: string
+          description: Provide a component name
+          pattern: '^([a-zA-Z][a-zA-Z0-9]*)(-[a-zA-Z0-9]+)*$'
+        project:
+          title: System
+          type: string
+          description: The project where this component will be
+          enum:
+            - projeto-1
+            - projeto-2
+            - projeto-3
+        owner:
+          title: Owner
+          type: string
+          description: Team or group that owns this component
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
+  steps:
+    - id: fetchBase
+      name: Fetch Base
+      action: fetch:template
+      input:
+        url: ./template
+        values:
+          app_name: ${{ parameters.component_id }}
+          app_proj: ${{ parameters.project }}
+          app_owner: ${{ parameters.owner }}
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        description: This is ${{ parameters.component_id }}
+        repoUrl: github.com?owner=igor-gouvea&repo=${{ parameters.component_id }}
+        defaultBranch: main
+        repoVisibility: public
+        protectDefaultBranch: false
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish'].output.repoContentsUrl }}
+        catalogInfoPath: /catalog-info.yaml
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps['publish'].output.remoteUrl }}

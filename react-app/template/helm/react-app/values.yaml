@@ -1,0 +1,17 @@
+deployment:
+  name: ${{ values.app_name }}
+  replicas: 1
+  repository: iagouvea/${{ values.app_name }}
+  tag: "9e6acc9"
+
+
+service:
+  name: ${{ values.app_name }}-svc
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  name: ${{ values.app_name }}-ingress
+  className: "nginx"
+  host: ${{ values.app_name }}.dev.local
